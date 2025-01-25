@@ -37,7 +37,7 @@ class App extends React.Component {
     content: 'flex',
     flex: '1'
   };
-
+  
 
   pageWrapperStyle = {
     display: 'flex',
