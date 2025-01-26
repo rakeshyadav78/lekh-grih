@@ -1,0 +1,24 @@
+.nav-link {
+    color: red; /* Normal state color */
+    font-weight: normal; /* Default font weight */
+}
+
+.nav-item {
+    color: red; /* Normal state color */
+}
+
+.nav-link:hover {
+    color: rgb(128, 10, 196); /* Hover color */
+}
+
+.active-link  {
+    color: rgb(128, 10, 196); /* Active state color */
+    font-weight: normal; /* Make the text bold when active */
+}
+
+.nav-brand{
+    color: rgb(128, 10, 196);
+    font-style: italic;
+    font-weight: bold;
+    font-size: larger;
+}

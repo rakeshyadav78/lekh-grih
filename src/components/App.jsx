@@ -4,9 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
-import Home from './Home';
-import About from './About';
-import Contact from './Contact';
 import TopNavBar from './TopNavBar';
 import Footer from './Footer';
 import Content from './Content';

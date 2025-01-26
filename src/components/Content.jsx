@@ -9,12 +9,12 @@ const Content = () => {
 
 
   const contentDivStyle = {
-    content: 'flex',
-    flex: '1',
-    // justifyContent: 'center', // Center content horizontally
-    // alignItems: 'center',
-    // height: '100vh'           // Ensure the container has full viewport height
-    // Center content vertically
+    display: "flex",
+    justifyContent: "center",  // Horizontally center
+    alignItems: "flex-start",   // Align to the top
+    height: "100vh",            // Full viewport height
+    margin: 0,
+    paddingTop: "50px", 
   };
 
   return (
