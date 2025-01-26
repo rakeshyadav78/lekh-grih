@@ -1,26 +1,24 @@
 .header {
-    text-align: 'center';
-    border-bottom: '1px solid rgb(128, 10, 196)',
-};
-
-
-
-.nav-link {
-    color: red; /* Normal state color */
-    font-weight: normal; /* Default font weight */
+    text-align: center;
+    border-bottom: 1px solid rgb(128, 10, 196);
 }
 
-.nav-item {
-    color: red; /* Normal state color */
-}
 
-.nav-brand{
-    color: rgb(128, 10, 196);
+
+.nav-brand {
+    color: rgb(128, 10, 196); 
     font-style: italic;
     font-weight: bold;
     font-size: 25px;
+    transition: color 0.3s ease; 
 }
 
-.nav-brand:hover{
+
+.nav-brand:hover {
     color: rgb(128, 10, 196);
 }
+
+.nav-link {
+    padding: 10px 25px;
+}
+

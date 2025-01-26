@@ -6,18 +6,15 @@ import '../css/TopNavBar.css';  // Import CSS from the css folder
 
 
 class TopNavBar extends React.Component {
-    navDivStyle = {
-        // textAlign: 'center',
-        borderBottom: '1px solid rgb(128, 10, 196)',
-    };
+  
 
     getNavLinkStyles = (isActive) => ({
-        color: isActive ? 'rgb(128, 10, 196)' : ' #000000'
+        color: isActive ? 'rgb(128, 10, 196)' : 'rgb(0, 0, 0)'
     });
 
     render() {
         return (
-            <div className='header' style={this.navDivStyle}>
+            <div className='header'>
                 <Navbar>
                     <Container>
                         <Navbar.Brand className="nav-brand">LekhGrih</Navbar.Brand>
