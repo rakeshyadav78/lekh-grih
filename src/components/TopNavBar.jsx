@@ -20,7 +20,7 @@ class TopNavBar extends React.Component {
             <div className='header' style={this.navDivStyle}>
                 <Navbar>
                     <Container>
-                        <Navbar.Brand href="#" className="nav-brand">LekhGrih</Navbar.Brand>
+                        <Navbar.Brand className="nav-brand">LekhGrih</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">

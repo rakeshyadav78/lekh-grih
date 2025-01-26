@@ -14,7 +14,7 @@ const Content = () => {
     alignItems: "flex-start",   // Align to the top
     height: "100vh",            // Full viewport height
     margin: 0,
-    paddingTop: "50px", 
+    paddingTop: "10px", 
   };
 
   return (

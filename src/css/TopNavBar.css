@@ -1,3 +1,10 @@
+.header {
+    text-align: 'center';
+    border-bottom: '1px solid rgb(128, 10, 196)',
+};
+
+
+
 .nav-link {
     color: red; /* Normal state color */
     font-weight: normal; /* Default font weight */
@@ -7,18 +14,13 @@
     color: red; /* Normal state color */
 }
 
-.nav-link:hover {
-    color: rgb(128, 10, 196); /* Hover color */
-}
-
-.active-link  {
-    color: rgb(128, 10, 196); /* Active state color */
-    font-weight: normal; /* Make the text bold when active */
-}
-
 .nav-brand{
     color: rgb(128, 10, 196);
     font-style: italic;
     font-weight: bold;
-    font-size: larger;
+    font-size: 25px;
+}
+
+.nav-brand:hover{
+    color: rgb(128, 10, 196);
 }
