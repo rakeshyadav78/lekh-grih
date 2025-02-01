@@ -14,6 +14,7 @@ class App extends React.Component {
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
+    fontFamily: 'sohne, "Helvetica Neue", Helvetica, Arial, sans-serif'
   };
 
 

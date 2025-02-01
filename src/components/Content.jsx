@@ -9,12 +9,16 @@ const Content = () => {
 
 
   const contentDivStyle = {
-    display: "flex",
-    justifyContent: "center",  // Horizontally center
-    alignItems: "flex-start",   // Align to the top
+    // display: "flex",
+    // justifyContent: "center",  // Horizontally center
+    // alignItems: "flex-start",   // Align to the top
     height: "100vh",            // Full viewport height
     margin: 0,
-    paddingTop: "10px", 
+    paddingTop: "3px", 
+    // width: "80%",
+    // maxWidth: "1200px",         /* Optional: max-width to avoid content stretching too wide */
+
+
   };
 
   return (

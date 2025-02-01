@@ -1,48 +1,40 @@
 import React from "react";
 import { Container, Navbar } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
-import '../css/TopNavBar.css';  // Import CSS from the css folder
-
-
+import { NavLink } from "react-router-dom";
+import '../css/TopNavBar.css';  // Import your custom CSS file
 
 class TopNavBar extends React.Component {
-  
-
-    getNavLinkStyles = (isActive) => ({
-        color: isActive ? 'rgb(128, 10, 196)' : 'rgb(0, 0, 0)'
-    });
-
     render() {
         return (
             <div className='header'>
-                <Navbar>
+                <Navbar className="navbar-custom">
                     <Container>
                         <Navbar.Brand className="nav-brand">LekhGrih</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <ul className="navbar-nav custom-navbar-links">
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/" style={({ isActive }) => this.getNavLinkStyles(isActive)}>
+                                    <NavLink className="nav-link" to="/">
                                         Home
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/passvault" style={({ isActive }) => this.getNavLinkStyles(isActive)}>
+                                    <NavLink className="nav-link" to="/passvault" >
                                         Pas Vault
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/docvault" style={({ isActive }) => this.getNavLinkStyles(isActive)}>
+                                    <NavLink className="nav-link" to="/docvault" >
                                         Doc Vault
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/about" style={({ isActive }) => this.getNavLinkStyles(isActive)}>
+                                    <NavLink className="nav-link" to="/about" >
                                         About
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/contact" style={({ isActive }) => this.getNavLinkStyles(isActive)}>
+                                    <NavLink className="nav-link" to="/contact" >
                                         Contact
                                     </NavLink>
                                 </li>

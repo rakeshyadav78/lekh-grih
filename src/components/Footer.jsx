@@ -9,9 +9,7 @@ const Footer = () => {
     position: "relative",
     bottom: "0",
     width: "100%",
-    borderTop: '1px solid rgb(128, 10, 196)',
-
-
+    borderTop: '1px solid rgba(0,0,0,0.8)',
   };
     return (
         <div className="footer" style={footerStyle}>

@@ -1,0 +1,56 @@
+/* .passvalut-navbar {
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgb(128, 10, 196);
+}
+
+.passvalut-navbar .navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+} */
+/* .passvalut-navbar .navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+} */
+
+
+.passvalut-navbar {
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* border-bottom: 1px solid rgb(128, 10, 196); */
+}
+
+.passvault-navbar-custom .navbar-nav {
+    display: flex;
+    justify-content: center; /* Center the nav items horizontally */
+    width: 100%; /* Ensure the navbar takes up full width */
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none; /* Remove default list styling */
+}
+
+.passvault-navbar-custom .nav-item {
+    padding: 0 15px; /* Add space between the links */
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+/* Prevent color change on hover */
+.nav-link:hover {
+    color: black; /* Keep the color the same on hover */
+    text-decoration: none; /* Ensure underline is not added */
+}

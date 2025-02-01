@@ -1,12 +1,12 @@
 .header {
     text-align: center;
-    border-bottom: 1px solid rgb(128, 10, 196);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
 }
 
 
 
-.nav-brand {
-    color: rgb(128, 10, 196); 
+/* .nav-brand {
+    color: rgba(0,0,0,0.8); 
     font-style: italic;
     font-weight: bold;
     font-size: 25px;
@@ -15,10 +15,52 @@
 
 
 .nav-brand:hover {
-    color: rgb(128, 10, 196);
+    color: rgba(0,0,0,0.8);
 }
 
-.nav-link {
+.nav-item {
     padding: 10px 25px;
 }
 
+.nav-link{
+    color: rgba(0,0,0,0.8);
+} */
+
+/* Ensure the navbar spans the full width */
+.navbar-custom {
+    width: 100%;
+}
+
+/* Align the Navbar.Brand to the left */
+.nav-brand {
+    flex-grow: 1;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+    font-size: 25px;
+
+}
+
+/* Custom style for the navbar links */
+.custom-navbar-links {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    list-style: none;
+    padding-left: 0;
+    /* Remove default padding */
+    margin-bottom: 0;
+    /* Remove default margin */
+}
+
+.custom-navbar-links .nav-item {
+    padding: 0 15px;
+    /* Space out the links */
+}
+
+.nav-link {
+    color: #000;
+    /* Default link color */
+    text-decoration: none;
+    /* Remove underline */
+}
