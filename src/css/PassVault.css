@@ -54,3 +54,10 @@
     color: black; /* Keep the color the same on hover */
     text-decoration: none; /* Ensure underline is not added */
 }
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 50px;
+}
