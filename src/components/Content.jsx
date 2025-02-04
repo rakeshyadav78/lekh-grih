@@ -7,6 +7,8 @@ import DocVault from "./DocVault";
 import NotFound from "./NotFound";
 import CredCategory from "./CredCategory";
 import ManageCred from "./ManageCred";
+import CredSubCategory from "./CredSubCategory";
+import LoginType from "./LoginType";
 
 const Content = () => {
 
@@ -32,7 +34,10 @@ const Content = () => {
         <Route path='/' element={<Home />} />
         <Route path='/passvault' element={<PassVault />} >
           <Route path="credCategory" element={<CredCategory />} />
+          <Route path="credSubCategory" element={<CredSubCategory />} />
+          <Route path="loginType" element={<LoginType />} />
           <Route path="manageCred" element={<ManageCred />} />
+          <Route index element={<CredCategory />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path='/docvault' element={<DocVault />} />

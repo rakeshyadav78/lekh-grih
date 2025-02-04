@@ -38,3 +38,78 @@ export const createCredCat = async (cid, description) => {
         console.log(error)
     }
 }
+
+
+export const fetchCredSubCategory = async () => {
+    try {
+        const response = await axios.get(API_URL + '/cred-sub-category/getAllCategory', {
+            responseType: 'json' // Correct type 'json', not JSON
+        });
+        const data = response.data;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data.respObj;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const createSubCredCat = async (scid, description) => {
+    try {
+        const reqData = {
+            scid: scid,
+            description: description
+        }
+        const response = await axios.post(API_URL + '/cred-sub-category/create', reqData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = response.data;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const fetchCredLoginTypes = async () => {
+    try {
+        const response = await axios.get(API_URL + '/cred-logintype/getAllType', {
+            responseType: 'json' // Correct type 'json', not JSON
+        });
+        const data = response.data;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data.respObj;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const createCredLoginType = async (loginType, description) => {
+    try {
+        const reqData = {
+            type: loginType,
+            description: description
+        }
+        const response = await axios.post(API_URL + '/cred-logintype/create', reqData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = response.data;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}

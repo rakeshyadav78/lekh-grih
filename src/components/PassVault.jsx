@@ -27,6 +27,16 @@ class PassVault extends React.Component {
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
+                                        <NavLink className="nav-link" to="credSubCategory">
+                                            Credential Sub Category
+                                        </NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" to="loginType">
+                                           Login Types
+                                        </NavLink>
+                                    </li>
+                                    <li className="nav-item">
                                         <NavLink className="nav-link" to="manageCred">
                                             Manage Credential
                                         </NavLink>

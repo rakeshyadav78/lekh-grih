@@ -1,49 +1,48 @@
 import React from "react";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
-import { fetchCredCategory, createCredCat } from '../service/passVaultService';
-import CredCategoryCreateModal from "./CredCategoryCreateModal";
-import '../css/CredCategory.css';
+import { fetchCredSubCategory, createSubCredCat } from '../service/passVaultService';
+import '../css/CredSubCategory.css';
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-class CredCategory extends React.Component {
+class CredSubCategory extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            credCategory: [],
+            credSubCategory: [],
             showModal: false,
-            credCategoryReq: {
-                cid: '',
+            credSubCategoryReq: {
+                scid: '',
                 description: ''
             },
         }
     }
 
     async componentDidMount() {
-        const data = await fetchCredCategory();
+        const data = await fetchCredSubCategory();
         console.log('component did mount : ', data)
-        this.setState({ credCategory: data }); 
+        this.setState({ credSubCategory: data }); 
     }
 
     openModal = () => {
         this.setState(prevState => ({
             showModal: !prevState.showModal,
-            credCategoryReq: {
-                cid: '',
+            credSubCategoryReq: {
+                scid: '',
                 description: ''
             }
         }));
     };
 
     viewData = async () => {
-        const data = await fetchCredCategory();
-        this.setState({ credCategory: data });
+        const data = await fetchCredSubCategory();
+        this.setState({ credSubCategory: data });
         this.openModal()
     }
 
-    createCategory = async () => {
+    createSubCategory = async () => {
         console.log('callinga api')
-        const resp = await createCredCat(this.state.credCategoryReq.cid, this.state.credCategoryReq.description);
+        const resp = await createSubCredCat(this.state.credSubCategoryReq.scid, this.state.credSubCategoryReq.description);
         console.log('response-errorCode : ' + resp.errorCode);
     }
 
@@ -66,8 +65,8 @@ class CredCategory extends React.Component {
 
 
         this.setState(prevState => ({
-            credCategoryReq: {
-                ...prevState.credCategoryReq,
+            credSubCategoryReq: {
+                ...prevState.credSubCategoryReq,
                 [name]: value
             }
         }));
@@ -90,24 +89,24 @@ class CredCategory extends React.Component {
                             <Row>
                                 <Col md={6}>
                                     <Form.Group controlId="formInput1">
-                                        <Form.Label>Credential category</Form.Label>
+                                        <Form.Label>Sub category</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Credential category"
-                                            name="cid"
-                                            value={this.state.credCategoryReq.cid}
+                                            placeholder="Sub category"
+                                            name="scid"
+                                            value={this.state.credSubCategoryReq.scid}
                                             onChange={this.handleInputChange}
                                         />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="formInput1">
-                                        <Form.Label>Credential Description</Form.Label>
+                                        <Form.Label>Description</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Credential Description"
+                                            placeholder="Description"
                                             name="description"
-                                            value={this.state.credCategoryReq.description}
+                                            value={this.state.credSubCategoryReq.description}
                                             onChange={this.handleInputChange}
                                         />
                                     </Form.Group>
@@ -116,10 +115,10 @@ class CredCategory extends React.Component {
 
                             <Row className="d-flex justify-content-center mt-3">
                                 <Col xs="auto">
-                                    <Button variant="info" className="mx-2" onClick={this.viewData}>View Category</Button>
+                                    <Button variant="info" className="mx-2" onClick={this.viewData}>View Data</Button>
                                 </Col>
                                 <Col xs="auto">
-                                    <Button variant="success" className="mx-2" onClick={this.createCategory}>Submit</Button>
+                                    <Button variant="success" className="mx-2" onClick={this.createSubCategory}>Submit</Button>
                                 </Col>
                             </Row>
                         </div>
@@ -132,7 +131,7 @@ class CredCategory extends React.Component {
                         <div>
                             <div className="modelbtn" style={this.credCategoryContentStyle}>
                                 <Button variant="primary" onClick={this.openModal}>
-                                    Add Category
+                                    Add Sub-Category
                                 </Button>
                             </div>
                             <Table bordered responsive className="text-center">
@@ -140,16 +139,16 @@ class CredCategory extends React.Component {
                                     <tr>
                                         {/* <th>#</th> */}
                                         <th>ID</th>
-                                        <th>Credential Category</th>
+                                        <th>Credential Sub-Category</th>
                                         <th>Description</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.credCategory.map(item => (
+                                    {this.state.credSubCategory.map(item => (
                                         <tr key={item.id}>
                                             <td>{item.id}</td>
-                                            <td>{item.cid}</td>
+                                            <td>{item.scid}</td>
                                             <td>{item.description}</td>
                                             <td>
 
@@ -182,4 +181,4 @@ class CredCategory extends React.Component {
     }
 }
 
-export default CredCategory
+export default CredSubCategory

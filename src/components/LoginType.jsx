@@ -1,49 +1,48 @@
 import React from "react";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
-import { fetchCredCategory, createCredCat } from '../service/passVaultService';
-import CredCategoryCreateModal from "./CredCategoryCreateModal";
-import '../css/CredCategory.css';
+import { fetchCredLoginTypes, createCredLoginType } from '../service/passVaultService';
+import '../css/CredSubCategory.css';
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-class CredCategory extends React.Component {
+class LoginType extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            credCategory: [],
+            loginType: [],
             showModal: false,
-            credCategoryReq: {
-                cid: '',
+            loginTypeReq: {
+                type: '',
                 description: ''
             },
         }
     }
 
     async componentDidMount() {
-        const data = await fetchCredCategory();
+        const data = await fetchCredLoginTypes();
         console.log('component did mount : ', data)
-        this.setState({ credCategory: data }); 
+        this.setState({ loginType: data }); 
     }
 
     openModal = () => {
         this.setState(prevState => ({
             showModal: !prevState.showModal,
-            credCategoryReq: {
-                cid: '',
+            loginTypeReq: {
+                type: '',
                 description: ''
             }
         }));
     };
 
     viewData = async () => {
-        const data = await fetchCredCategory();
-        this.setState({ credCategory: data });
+        const data = await fetchCredLoginTypes();
+        this.setState({ loginType: data });
         this.openModal()
     }
 
-    createCategory = async () => {
+    createLoginType = async () => {
         console.log('callinga api')
-        const resp = await createCredCat(this.state.credCategoryReq.cid, this.state.credCategoryReq.description);
+        const resp = await createCredLoginType(this.state.loginTypeReq.type, this.state.loginTypeReq.description);
         console.log('response-errorCode : ' + resp.errorCode);
     }
 
@@ -66,8 +65,8 @@ class CredCategory extends React.Component {
 
 
         this.setState(prevState => ({
-            credCategoryReq: {
-                ...prevState.credCategoryReq,
+            loginTypeReq: {
+                ...prevState.loginTypeReq,
                 [name]: value
             }
         }));
@@ -90,24 +89,24 @@ class CredCategory extends React.Component {
                             <Row>
                                 <Col md={6}>
                                     <Form.Group controlId="formInput1">
-                                        <Form.Label>Credential category</Form.Label>
+                                        <Form.Label>Login Type</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Credential category"
-                                            name="cid"
-                                            value={this.state.credCategoryReq.cid}
+                                            placeholder="Login type"
+                                            name="type"
+                                            value={this.state.loginTypeReq.type}
                                             onChange={this.handleInputChange}
                                         />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="formInput1">
-                                        <Form.Label>Credential Description</Form.Label>
+                                        <Form.Label>Description</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Credential Description"
+                                            placeholder="Description"
                                             name="description"
-                                            value={this.state.credCategoryReq.description}
+                                            value={this.state.loginTypeReq.description}
                                             onChange={this.handleInputChange}
                                         />
                                     </Form.Group>
@@ -116,10 +115,10 @@ class CredCategory extends React.Component {
 
                             <Row className="d-flex justify-content-center mt-3">
                                 <Col xs="auto">
-                                    <Button variant="info" className="mx-2" onClick={this.viewData}>View Category</Button>
+                                    <Button variant="info" className="mx-2" onClick={this.viewData}>View Data</Button>
                                 </Col>
                                 <Col xs="auto">
-                                    <Button variant="success" className="mx-2" onClick={this.createCategory}>Submit</Button>
+                                    <Button variant="success" className="mx-2" onClick={this.createLoginType}>Submit</Button>
                                 </Col>
                             </Row>
                         </div>
@@ -132,7 +131,7 @@ class CredCategory extends React.Component {
                         <div>
                             <div className="modelbtn" style={this.credCategoryContentStyle}>
                                 <Button variant="primary" onClick={this.openModal}>
-                                    Add Category
+                                    Add Login Type
                                 </Button>
                             </div>
                             <Table bordered responsive className="text-center">
@@ -140,16 +139,16 @@ class CredCategory extends React.Component {
                                     <tr>
                                         {/* <th>#</th> */}
                                         <th>ID</th>
-                                        <th>Credential Category</th>
+                                        <th>Login Type</th>
                                         <th>Description</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.credCategory.map(item => (
+                                    {this.state.loginType.map(item => (
                                         <tr key={item.id}>
                                             <td>{item.id}</td>
-                                            <td>{item.cid}</td>
+                                            <td>{item.type}</td>
                                             <td>{item.description}</td>
                                             <td>
 
@@ -182,4 +181,4 @@ class CredCategory extends React.Component {
     }
 }
 
-export default CredCategory
+export default LoginType

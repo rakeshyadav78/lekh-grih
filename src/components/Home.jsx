@@ -1,5 +1,8 @@
 import React from "react";
+import DataTable from 'datatables.net-react';
+import DT from 'datatables.net-bs5';
 
+DataTable.use(DT);
 class Home extends React.Component {
 
     constructor(props) {
@@ -9,13 +12,6 @@ class Home extends React.Component {
             isVisible: true,
         };
     }
-
-    toggleVisibility = () => {
-        // Toggle the visibility state
-        this.setState(prevState => ({
-            isVisible: !prevState.isVisible,
-        }));
-    };
 
     contentDivStyle = {
         display: "flex",
@@ -28,24 +24,29 @@ class Home extends React.Component {
         return (
             <div style={this.contentDivStyle}>
                 {/* <h1>Home Component</h1> */}
-                <div>
-                    <button onClick={this.toggleVisibility}>
-                        {this.state.isVisible ? 'Hide' : 'Show'} Div
-                    </button>
+                <DataTable className="display">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Extn.</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Rakesh</td>
+                                <td>SD1</td>
+                                <td>Sakinaka</td>
+                                <td>5523</td>
+                                <td>02-02-2022</td>
+                                <td>15.LPA</td>
+                            </tr>
+                        </tbody>
+                    </thead>
+                </DataTable>
 
-
-                    {this.state.isVisible && (
-                        <div className="toggle-div">
-                            This is a toggled div!
-                        </div>
-                    )}
-
-                    {!this.state.isVisible && (
-                        <div className="toggle-div2">
-                            This is a toggled div2!
-                        </div>
-                    )}
-                </div>
             </div >
         )
     }
