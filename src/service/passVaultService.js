@@ -113,3 +113,19 @@ export const createCredLoginType = async (loginType, description) => {
         console.log(error)
     }
 }
+
+
+export const fetchCredentials = async () => {
+    try {
+        const response = await axios.get(API_URL + '/credvault/getAllCreds', {
+            responseType: 'json' // Correct type 'json', not JSON
+        });
+        const data = response.data;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data.respObj;
+    } catch (error) {
+        console.log(error)
+    }
+}

@@ -1,0 +1,75 @@
+@import 'datatables.net-dt';
+@import 'datatables.net-responsive-dt';
+@import 'datatables.net-select-dt';
+
+
+/* Basic Table Styling */
+table.display {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Row */
+table.display thead {
+  background-color: #4CAF50;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Table Header Cells */
+table.display th {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+/* Table Body Rows */
+table.display tbody tr {
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for table rows */
+table.display tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Alternating row colors */
+table.display tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Table Data Cells */
+table.display td {
+  padding: 10px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Footer and Last Row */
+table.display tfoot {
+  background-color: #4CAF50;
+  color: white;
+  text-align: left;
+}
+
+/* Add some space for the entire table */
+table.display {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  table.display {
+      font-size: 14px;
+  }
+
+  table.display th,
+  table.display td {
+      padding: 8px 10px;
+  }
+}
