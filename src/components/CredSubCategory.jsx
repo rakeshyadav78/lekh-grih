@@ -3,6 +3,7 @@ import { Button, Col, Form, Row, Table } from "react-bootstrap";
 import { fetchCredSubCategory, createSubCredCat } from '../service/passVaultService';
 import '../css/CredSubCategory.css';
 import { FaEdit, FaTrash } from "react-icons/fa";
+import TableComponent from "./TableComponent";
 
 class CredSubCategory extends React.Component {
     constructor(props) {
@@ -17,6 +18,13 @@ class CredSubCategory extends React.Component {
             },
         }
     }
+
+    tableHeader=[
+        { key: 'id', label: 'ID' },
+        { key: 'scid', label: 'Credential Sub-Category' },
+        { key: 'description', label: 'Description' },
+        { key: 'action', label: 'Action' }
+      ]
 
     async componentDidMount() {
         const data = await fetchCredSubCategory();
@@ -82,7 +90,7 @@ class CredSubCategory extends React.Component {
 
     render() {
         return (
-            <div className="cred-category-content" >
+            <div className="container mt-5" >
                 {
                     this.state.showModal && (
                         <div className="modal-content">
@@ -134,10 +142,12 @@ class CredSubCategory extends React.Component {
                                     Add Sub-Category
                                 </Button>
                             </div>
-                            <Table bordered responsive className="text-center">
+
+                            <TableComponent onEdit={this.handleEdit} onDelete={this.handleDelete} columns={this.tableHeader} data={this.state.credSubCategory} />
+
+                            {/* <Table bordered responsive className="text-center">
                                 <thead>
                                     <tr>
-                                        {/* <th>#</th> */}
                                         <th>ID</th>
                                         <th>Credential Sub-Category</th>
                                         <th>Description</th>
@@ -171,7 +181,7 @@ class CredSubCategory extends React.Component {
                                         </tr>
                                     ))}
                                 </tbody>
-                            </Table>
+                            </Table> */}
                         </div>
 
                     )}

@@ -1,161 +1,59 @@
 import React from "react";
-import DataTable from 'datatables.net-react';
-import DT from 'datatables.net-bs5';
-import 'datatables.net-select-dt';
-import 'datatables.net-responsive-dt';
-import '../css/Home.css';
+import { Table, InputGroup, FormControl, Pagination } from "react-bootstrap";
+import TableComponent from "./TableComponent";
 
-
-
-DataTable.use(DT);
 class Home extends React.Component {
-
-    constructor(props) {
-        super(props);
-        // Initialize state with 'isVisible' set to true
-        this.state = {
-            isVisible: true,
-        };
-    }
-
-    contentDivStyle = {
-        display: "flex",
-        justifyContent: "center",  // Horizontally center
-        alignItems: "flex-start",   // Align to the top
-        // width: "80%",
-        // maxWidth: "1200px",         /* Optional: max-width to avoid content stretching too wide */
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchQuery: "",
+      currentPage: 1,
+      productsPerPage: 5,
+      products: [
+        { id: 1, name: "Apple Watch", price: "₦350,000", category: "Accessories", quantity: "7", rating: "5" },
+        { id: 2, name: "Fitness watch", price: "₦10,000", category: "Fitness", quantity: "23", rating: "2" },
+        { id: 3, name: "Beach dress", price: "₦25,000", category: "Clothing", quantity: "5", rating: "4" },
+        { id: 4, name: "Washing machine", price: "₦260,000", category: "Electronics", quantity: "10", rating: "4" },
+        { id: 5, name: "Blue Jeans", price: "₦10,000", category: "Clothing", quantity: "50", rating: "5" },
+        { id: 6, name: "Samsung Watch", price: "₦270,000", category: "Accessories", quantity: "7", rating: "3" },
+        { id: 7, name: "Yoga mat", price: "₦15,000", category: "Fitness", quantity: "15", rating: "4" },
+        { id: 8, name: "Jumpsuit", price: "₦15,700", category: "Clothing", quantity: "30", rating: "5" },
+        { id: 9, name: "Hand mixer", price: "₦50,000", category: "Electronics", quantity: "10", rating: "4" },
+        { id: 10, name: "Pallazo", price: "₦12,000", category: "Clothing", quantity: "4", rating: "3" },
+      ],
+      sortDirection: 'asc',
+      sortColumn: 'id'
     };
-    render() {
-        return (
-            <div style={this.contentDivStyle}>
-                {/* <h1>Home Component</h1> */}
-                <DataTable className="display">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Extn.</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
+  }
 
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>Software Engineer</td>
-                            <td>New York</td>
-                            <td>1234</td>
-                            <td>2021-06-01</td>
-                            <td>$80,000</td>
-                        </tr>
+  tableHeader=[
+    { key: 'id', label: 'ID' },
+    { key: 'name', label: 'Name' },
+    { key: 'price', label: 'Price' },
+    { key: 'category', label: 'Category' },
+    { key: 'quantity', label: 'Quantity' },
+    { key: 'rating', label: 'Rating' },
+      { key: 'action', label: 'Action' }
+  ]
 
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>Product Manager</td>
-                            <td>San Francisco</td>
-                            <td>5678</td>
-                            <td>2019-03-15</td>
-                            <td>$95,000</td>
-                        </tr>
+  onDelte=(id)=>{
+    console.log('deleting : '+id)
+  }
+  onEdit=(id)=>{
+    console.log('editin : '+id)
+  }
 
-                        <tr>
-                            <td>David Brown</td>
-                            <td>UX Designer</td>
-                            <td>Chicago</td>
-                            <td>9876</td>
-                            <td>2020-10-11</td>
-                            <td>$75,000</td>
-                        </tr>
 
-                        <tr>
-                            <td>Emily White</td>
-                            <td>HR Specialist</td>
-                            <td>Los Angeles</td>
-                            <td>2345</td>
-                            <td>2018-07-22</td>
-                            <td>$60,000</td>
-                        </tr>
+  render() {
+ 
 
-                        <tr>
-                            <td>Michael Green</td>
-                            <td>Marketing Director</td>
-                            <td>Boston</td>
-                            <td>6789</td>
-                            <td>2022-05-19</td>
-                            <td>$120,000</td>
-                        </tr>
-
-                        <tr>
-                            <td>Alice Johnson</td>
-                            <td>QA Engineer</td>
-                            <td>Seattle</td>
-                            <td>3456</td>
-                            <td>2021-01-30</td>
-                            <td>$70,000</td>
-                        </tr>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>Software Engineer</td>
-                            <td>New York</td>
-                            <td>1234</td>
-                            <td>2021-06-01</td>
-                            <td>$80,000</td>
-                        </tr>
-
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>Product Manager</td>
-                            <td>San Francisco</td>
-                            <td>5678</td>
-                            <td>2019-03-15</td>
-                            <td>$95,000</td>
-                        </tr>
-
-                        <tr>
-                            <td>David Brown</td>
-                            <td>UX Designer</td>
-                            <td>Chicago</td>
-                            <td>9876</td>
-                            <td>2020-10-11</td>
-                            <td>$75,000</td>
-                        </tr>
-
-                        <tr>
-                            <td>Emily White</td>
-                            <td>HR Specialist</td>
-                            <td>Los Angeles</td>
-                            <td>2345</td>
-                            <td>2018-07-22</td>
-                            <td>$60,000</td>
-                        </tr>
-
-                        <tr>
-                            <td>Michael Green</td>
-                            <td>Marketing Director</td>
-                            <td>Boston</td>
-                            <td>6789</td>
-                            <td>2022-05-19</td>
-                            <td>$120,000</td>
-                        </tr>
-
-                        <tr>
-                            <td>Alice Johnson</td>
-                            <td>QA Engineer</td>
-                            <td>Seattle</td>
-                            <td>3456</td>
-                            <td>2021-01-30</td>
-                            <td>$70,000</td>
-                        </tr>   
-                    </tbody>
-                </DataTable>
-
-                {/* <TableComponent/> */}
-
-            </div >
-        )
-    }
+    return (
+      <div >
+ 
+        <TableComponent data={this.state.products} columns={this.tableHeader} onDelete={this.onDelte} onEdit={this.onEdit}/>
+      </div>
+    );
+  }
 }
 
 export default Home;

@@ -4,6 +4,7 @@ import { fetchCredCategory, createCredCat } from '../service/passVaultService';
 import CredCategoryCreateModal from "./CredCategoryCreateModal";
 import '../css/CredCategory.css';
 import { FaEdit, FaTrash } from "react-icons/fa";
+import TableComponent from "./TableComponent";
 
 class CredCategory extends React.Component {
     constructor(props) {
@@ -81,9 +82,17 @@ class CredCategory extends React.Component {
         console.log('Deleting : ' + cid)
     }
 
+    tableHeader=[
+        { key: 'id', label: 'ID' },
+        { key: 'cid', label: 'Credential Category' },
+        { key: 'description', label: 'Description' },
+        { key: 'action', label: 'Action' }
+      ]
+    
+
     render() {
         return (
-            <div className="cred-category-content" >
+            <div className="container" >
                 {
                     this.state.showModal && (
                         <div className="modal-content">
@@ -135,10 +144,10 @@ class CredCategory extends React.Component {
                                     Add Category
                                 </Button>
                             </div>
-                            <Table bordered responsive className="text-center">
+                            <TableComponent onEdit={this.handleEdit} onDelete={this.handleDelete} columns={this.tableHeader} data={this.state.credCategory} />
+                            {/* <Table bordered responsive className="text-center">
                                 <thead>
                                     <tr>
-                                        {/* <th>#</th> */}
                                         <th>ID</th>
                                         <th>Credential Category</th>
                                         <th>Description</th>
@@ -172,7 +181,7 @@ class CredCategory extends React.Component {
                                         </tr>
                                     ))}
                                 </tbody>
-                            </Table>
+                            </Table> */}
                         </div>
 
                     )}

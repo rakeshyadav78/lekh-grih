@@ -128,4 +128,25 @@ export const fetchCredentials = async () => {
     } catch (error) {
         console.log(error)
     }
+    
+}
+
+
+export const createCred = async (reqData) => {
+    try {
+
+        console.log('calling api '+reqData)
+        const response = await axios.post(API_URL + '/credvault/create', reqData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = response.data;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
 }

@@ -1,0 +1,77 @@
+/* styles.css or inline styles */
+.table-rounded {
+    border-radius: 10px; /* Round the corners of the table */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow around the table for better visibility */
+  }
+  
+  .table-rounded th,
+  .table-rounded td {
+    border: none; /* Remove the border from table cells */
+  }
+  
+  .table-rounded thead th {
+    background-color: #f8f9fa; /* Add a background color to the header */
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .table-rounded tbody tr {
+    transition: background-color 0.3s;
+  }
+  
+  .table-rounded tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+  }
+  
+  .table-rounded tbody td {
+    padding: 10px; /* Add some padding for better cell spacing */
+
+    
+  }
+  
+  .table-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 400px; /* Adjust the height as needed */
+    border-radius: 10px; /* Rounds the container's corners */
+}
+
+/* Style the horizontal and vertical scrollbar */
+.table-container::-webkit-scrollbar {
+    width: 8px; /* Width of the vertical scrollbar */
+    height: 8px; /* Height of the horizontal scrollbar */
+}
+
+/* Style the scrollbar thumb (the part you drag) */
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #888; /* Scrollbar color */
+    border-radius: 10px; /* Makes the scrollbar thumb rounded */
+}
+
+/* Style the scrollbar track (the background of the scrollbar) */
+.table-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Light gray color for the track */
+    border-radius: 10px; /* Makes the track rounded */
+}
+
+/* Optional: Hover effect for the scrollbar */
+.table-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Darker color on hover */
+}
+
+.table-container th,
+.table-container td {
+    text-align: center;  /* Centers the text in both header and data cells */
+    white-space: nowrap;  /* Prevents wrapping of the header text */
+}
+
+.table-rounded {
+    border-radius: 10px;
+}
+
+.table-container thead {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa; /* Match header background */
+  z-index: 1;
+}

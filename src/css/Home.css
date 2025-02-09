@@ -1,75 +1,36 @@
-@import 'datatables.net-dt';
-@import 'datatables.net-responsive-dt';
-@import 'datatables.net-select-dt';
-
-
-/* Basic Table Styling */
-table.display {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: Arial, sans-serif;
-}
-
-/* Header Row */
-table.display thead {
-  background-color: #4CAF50;
-  color: white;
-  text-align: left;
-  font-weight: bold;
-}
-
-/* Table Header Cells */
-table.display th {
-  padding: 12px 15px;
-  text-align: left;
-}
-
-/* Table Body Rows */
-table.display tbody tr {
-  background-color: #f9f9f9;
-  transition: background-color 0.3s ease;
-}
-
-/* Hover effect for table rows */
-table.display tbody tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Alternating row colors */
-table.display tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-/* Table Data Cells */
-table.display td {
-  padding: 10px 15px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Footer and Last Row */
-table.display tfoot {
-  background-color: #4CAF50;
-  color: white;
-  text-align: left;
-}
-
-/* Add some space for the entire table */
-table.display {
-  margin-top: 20px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive Styling */
-@media (max-width: 768px) {
-  table.display {
-      font-size: 14px;
+/* Custom CSS for styling the table */
+.custom-table {
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #ddd; /* Light border for table */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   }
-
-  table.display th,
-  table.display td {
-      padding: 8px 10px;
+  
+  .custom-table th, .custom-table td {
+    padding: 12px 20px; /* Add space around the text */
+    text-align: center; /* Center text in table cells */
   }
-}
+  
+  .custom-table th {
+    background-color: #f8f9fa; /* Light background for the header */
+    color: #495057; /* Dark text for contrast */
+  }
+  
+  .custom-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Zebra striping for odd rows */
+  }
+  
+  .custom-table tbody tr:nth-child(even) {
+    background-color: #fff; /* White background for even rows */
+  }
+  
+  .custom-table tbody tr:hover {
+    background-color: #e9ecef; /* Slight hover effect */
+    cursor: pointer; /* Cursor change on hover */
+  }
+  
+  .custom-table td {
+    font-size: 14px; /* Standard text size */
+    color: #212529; /* Dark text color */
+  }
+  

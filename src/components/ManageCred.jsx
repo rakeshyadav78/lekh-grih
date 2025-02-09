@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
-import { fetchCredentials } from '../service/passVaultService';
+import { fetchCredentials, fetchCredCategory, fetchCredSubCategory, fetchCredLoginTypes, createCred } from '../service/passVaultService';
 import { FaEdit, FaTrash } from "react-icons/fa";
 import '../css/ManageCred.css';
+import { data } from "react-router-dom";
+import TableComponent from "./TableComponent";
 
 class ManageCred extends React.Component {
     constructor(props) {
@@ -10,6 +12,9 @@ class ManageCred extends React.Component {
 
         this.state = {
             credData: [],
+            credCategory: [],
+            credSubCategory: [],
+            loginTypes: [],
             showModal: false,
             credVault: {
                 type: '',
@@ -36,7 +41,7 @@ class ManageCred extends React.Component {
 
     handleInputChange = (e) => {
         const { name, value } = e.target;
-        console.log('name : '+name+',value : '+value);
+        console.log('name : ' + name + ',value : ' + value);
 
         this.setState(prevState => ({
             credVault: {
@@ -51,6 +56,9 @@ class ManageCred extends React.Component {
         const resp = await fetchCredentials();
         console.log('credential response : ' + resp)
         this.setState({ credData: resp })
+        await this.getCredCategory()
+        await this.getSubCredCategory()
+        await this.getCredLoginTypes()
     }
 
     handleEdit = (id) => {
@@ -87,21 +95,74 @@ class ManageCred extends React.Component {
         }))
     }
 
+    tableColumns = [
+        { label: 'ID', key: 'id' },
+        { label: 'Vault User ID', key: 'userName' },
+        { label: 'Category', key: 'ccid' },
+        { label: 'Sub-Category', key: 'cscid' },
+        { label: 'Login Type', key: 'type' },
+        { label: 'Institution Name', key: 'orgName' },
+        { label: 'Mobile No', key: 'mobNum' },
+        { label: 'Email', key: 'email' },
+        { label: 'Pass1', key: 'pass1' },
+        { label: 'Pass2', key: 'pass2' },
+        { label: 'Pin', key: 'pin' },
+        { label: 'Mpin', key: 'mpin' },
+        { label: 'OTP', key: 'otp' },
+        { label: 'T-OTP', key: 'totp' },
+        { label: 'Info1', key: 'info1' },
+        { label: 'Info2', key: 'info2' },
+        { label: 'Info3', key: 'info3' },
+        { label: 'Created', key: 'created' }, 
+        { label: 'Updated', key: 'updated' }, 
+        { label: 'Action', key: 'action' }, 
+    ]
+
+
     viewData = async () => {
         const data = await fetchCredentials();
         this.setState({ credData: data })
         this.showForm()
     }
 
-    createCred=()=>{
-        const credVaultReq=JSON.stringify(this.state.credVault);
-        console.log('cred data : '+credVaultReq)
+    createCreds = async () => {
+        const credVaultReq = JSON.stringify(this.state.credVault);
+        console.log('cred data : ' + credVaultReq)
+        await createCred(credVaultReq)
         this.viewData()
+    }
+
+    getCredCategory = async () => {
+        const category = await fetchCredCategory();
+        this.setState({ credCategory: category })
+    }
+
+    getSubCredCategory = async () => {
+        const subCategory = await fetchCredSubCategory();
+        console.log('cred category data ' + JSON.stringify(subCategory))
+        this.setState({ credSubCategory: subCategory })
+    }
+
+    getCredLoginTypes = async ()=>{
+        const loginTypesData = await fetchCredLoginTypes();
+        this.setState({loginTypes:loginTypesData})
     }
 
     credCategoryContentStyle = {
         margin: '10px'
     }
+    handleSelectChange = (e) => {
+        console.log('selected value : ' + e.target.value + ' ,name : ' + e.target.name)
+    }
+
+    tableHeader=[
+        { key: 'id', label: 'ID' },
+        { key: 'name', label: 'Name' },
+        { key: 'price', label: 'Price' },
+        { key: 'category', label: 'Category' },
+        { key: 'quantity', label: 'Quantity' },
+        { key: 'rating', label: 'Rating' },
+      ]
 
     render() {
         return (
@@ -124,40 +185,42 @@ class ManageCred extends React.Component {
                                     </Form.Group>
                                 </Col>
                                 <Col md={3}>
-                                    <Form.Group controlId="ccid">
-                                        <Form.Label>Category</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Category"
-                                            name="ccid"
-                                            value={this.state.credVault.ccid}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <Form.Label>Category</Form.Label>
+                                    <Form.Select aria-label="Default select example" name="ccid" onChange={this.handleInputChange}>
+                                        <option value={''}>Select</option>
+                                        {this.state.credCategory.map((option) => (
+                                            <option key={option.cid} value={option.cid}>
+                                                {option.cid}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
                                 </Col>
                                 <Col md={3}>
-                                    <Form.Group controlId="cscid">
-                                        <Form.Label>Sub-Category</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Sub-Category"
-                                            name="cscid"
-                                            value={this.state.credVault.cscid}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    {/* <Form.Group controlId="cscid"> */}
+                                    <Form.Label>Sub-Category</Form.Label>
+                                    <Form.Select aria-label="Default select example" name="cscid" onChange={this.handleInputChange}>
+                                        <option value={''}>Select</option>
+                                        {this.state.credSubCategory.map((option) => (
+
+                                            <option key={option.scid} value={option.scid}>
+                                                {option.scid}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
+                                    {/* </Form.Group> */}
                                 </Col>
                                 <Col md={3}>
-                                    <Form.Group controlId="loginType">
-                                        <Form.Label>Login Type</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Login Type"
-                                            name="type"
-                                            value={this.state.credVault.type}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+
+                                <Form.Label>Sub-Category</Form.Label>
+                                    <Form.Select aria-label="Default select example" name="type" onChange={this.handleInputChange}>
+                                        <option value={''}>Select</option>
+                                        {this.state.loginTypes.map((option) => (
+
+                                            <option key={option.type} value={option.type}>
+                                                {option.type}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
                                 </Col>
                             </Row>
                             <Row>
@@ -261,7 +324,7 @@ class ManageCred extends React.Component {
                                 </Col>
                             </Row>
                             <Row>
-                                
+
                                 <Col md={3}>
                                     <Form.Group controlId="totp">
                                         <Form.Label>T-OTP</Form.Label>
@@ -291,13 +354,13 @@ class ManageCred extends React.Component {
                                         <Form.Label>Info2</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Description"
+                                            placeholder="Info2"
                                             name="info2"
                                             value={this.state.credVault.info2}
                                             onChange={this.handleInputChange}
                                         />
                                     </Form.Group>
-                                    
+
                                 </Col>
                                 <Col md={3}>
                                     <Form.Group controlId="info3">
@@ -318,7 +381,7 @@ class ManageCred extends React.Component {
                                     <Button variant="info" className="mx-2" onClick={this.viewData}>View Data</Button>
                                 </Col>
                                 <Col xs="auto">
-                                    <Button variant="success" className="mx-2" onClick={this.createCred}>Submit</Button>
+                                    <Button variant="success" className="mx-2" onClick={this.createCreds}>Submit</Button>
                                 </Col>
                             </Row>
                         </div>
@@ -334,7 +397,7 @@ class ManageCred extends React.Component {
                             </div>
                             <div className="cred-data">
 
-                                <Table bordered responsive className="text-center">
+                                {/* <Table bordered responsive className="text-center">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -413,7 +476,10 @@ class ManageCred extends React.Component {
                                             </tr>
                                         ))}
                                     </tbody>
-                                </Table>
+                                </Table> */}
+                                {/* <TableComponent data={this.state.credData}, columns/> */}
+                                <TableComponent onEdit={this.handleEdit} onDelete={this.handleDelete} columns={this.tableColumns} data={this.state.credData} />
+
                             </div>
                         </div>
                     )
