@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 const CustomFormInput = ({ inputType, placeholderVal, inputName, stateVal, onChangeHandler }) => {
     return (
         <Form.Group controlId={inputName}>
-            <Form.Label>Credential Description</Form.Label>
+            <Form.Label>{placeholderVal}</Form.Label>
             <Form.Control
                 type={inputType}
                 placeholder={placeholderVal}

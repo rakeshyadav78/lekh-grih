@@ -5,6 +5,8 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import '../css/ManageCred.css';
 import { data } from "react-router-dom";
 import TableComponent from "./TableComponent";
+import CustomFormSelect from "./CustomFormSelect";
+import CustomFormInput from "./CustomFormInput";
 
 class ManageCred extends React.Component {
     constructor(props) {
@@ -113,9 +115,9 @@ class ManageCred extends React.Component {
         { label: 'Info1', key: 'info1' },
         { label: 'Info2', key: 'info2' },
         { label: 'Info3', key: 'info3' },
-        { label: 'Created', key: 'created' }, 
-        { label: 'Updated', key: 'updated' }, 
-        { label: 'Action', key: 'action' }, 
+        { label: 'Created', key: 'createdTime' },
+        { label: 'Updated', key: 'updatedTime' },
+        { label: 'Action', key: 'action' },
     ]
 
 
@@ -143,9 +145,9 @@ class ManageCred extends React.Component {
         this.setState({ credSubCategory: subCategory })
     }
 
-    getCredLoginTypes = async ()=>{
+    getCredLoginTypes = async () => {
         const loginTypesData = await fetchCredLoginTypes();
-        this.setState({loginTypes:loginTypesData})
+        this.setState({ loginTypes: loginTypesData })
     }
 
     credCategoryContentStyle = {
@@ -155,16 +157,22 @@ class ManageCred extends React.Component {
         console.log('selected value : ' + e.target.value + ' ,name : ' + e.target.name)
     }
 
-    tableHeader=[
+    tableHeader = [
         { key: 'id', label: 'ID' },
         { key: 'name', label: 'Name' },
         { key: 'price', label: 'Price' },
         { key: 'category', label: 'Category' },
         { key: 'quantity', label: 'Quantity' },
         { key: 'rating', label: 'Rating' },
-      ]
+    ]
 
     render() {
+
+        const loginTypeData = this.state.loginTypes.map(option => option.type)
+        const catData = this.state.credCategory.map(option => option.cid)
+        const subCatData = this.state.credSubCategory.map(option => option.scid)
+
+
         return (
             <div className="credvault-content">
 
@@ -172,207 +180,76 @@ class ManageCred extends React.Component {
                     this.state.showModal && (
                         <div className="modal-content">
                             <Row>
-                                <Col md={3}>
-                                    <Form.Group controlId="userName">
-                                        <Form.Label>Username</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Username"
-                                            name="userName"
-                                            value={this.state.credVault.userName}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={3}>
-                                    <Form.Label>Category</Form.Label>
-                                    <Form.Select aria-label="Default select example" name="ccid" onChange={this.handleInputChange}>
-                                        <option value={''}>Select</option>
-                                        {this.state.credCategory.map((option) => (
-                                            <option key={option.cid} value={option.cid}>
-                                                {option.cid}
-                                            </option>
-                                        ))}
-                                    </Form.Select>
-                                </Col>
-                                <Col md={3}>
-                                    {/* <Form.Group controlId="cscid"> */}
-                                    <Form.Label>Sub-Category</Form.Label>
-                                    <Form.Select aria-label="Default select example" name="cscid" onChange={this.handleInputChange}>
-                                        <option value={''}>Select</option>
-                                        {this.state.credSubCategory.map((option) => (
 
-                                            <option key={option.scid} value={option.scid}>
-                                                {option.scid}
-                                            </option>
-                                        ))}
-                                    </Form.Select>
-                                    {/* </Form.Group> */}
-                                </Col>
                                 <Col md={3}>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Username'} inputName={'userName'} stateVal={this.state.credVault.userName} onChangeHandler={this.handleInputChange} />
+                                </Col>
 
-                                <Form.Label>Sub-Category</Form.Label>
-                                    <Form.Select aria-label="Default select example" name="type" onChange={this.handleInputChange}>
-                                        <option value={''}>Select</option>
-                                        {this.state.loginTypes.map((option) => (
+                                <Col md={3}>
+                                    <CustomFormSelect data={catData} inputName={'ccid'} onChangeHandler={this.handleInputChange} placeholderVal={'Category'} />
+                                </Col>
 
-                                            <option key={option.type} value={option.type}>
-                                                {option.type}
-                                            </option>
-                                        ))}
-                                    </Form.Select>
+                                <Col md={3}>
+                                    <CustomFormSelect data={subCatData} inputName={'cscid'} onChangeHandler={this.handleInputChange} placeholderVal={'Sub-Category'} />
+                                </Col>
+
+                                <Col md={3}>
+                                    <CustomFormSelect data={loginTypeData} inputName={'type'} onChangeHandler={this.handleInputChange} placeholderVal={'Login Type'} />
                                 </Col>
                             </Row>
+
                             <Row>
                                 <Col md={3}>
-                                    <Form.Group controlId="orgName">
-                                        <Form.Label>Institution</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Institution"
-                                            name="orgName"
-                                            value={this.state.credVault.orgName}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Institution'} inputName={'orgName'} stateVal={this.state.credVault.orgName} onChangeHandler={this.handleInputChange} />
                                 </Col>
+
                                 <Col md={3}>
-                                    <Form.Group controlId="mobNum">
-                                        <Form.Label>Mobile No</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Mobile No"
-                                            name="mobNum"
-                                            value={this.state.credVault.mobNum}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Mobile No'} inputName={'mobNum'} stateVal={this.state.credVault.mobNum} onChangeHandler={this.handleInputChange} />
                                 </Col>
+
                                 <Col md={3}>
-                                    <Form.Group controlId="email">
-                                        <Form.Label>Email</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Email"
-                                            name="email"
-                                            value={this.state.credVault.email}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Email'} inputName={'email'} stateVal={this.state.credVault.email} onChangeHandler={this.handleInputChange} />
                                 </Col>
+
                                 <Col md={3}>
-                                    <Form.Group controlId="pass1">
-                                        <Form.Label>Pass1</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Pass1"
-                                            name="pass1"
-                                            value={this.state.credVault.pass1}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Pass1'} inputName={'pass1'} stateVal={this.state.credVault.pass1} onChangeHandler={this.handleInputChange} />
                                 </Col>
                             </Row>
+
                             <Row>
                                 <Col md={3}>
-                                    <Form.Group controlId="pass2">
-                                        <Form.Label>Pass2</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Pass2"
-                                            name="pass2"
-                                            value={this.state.credVault.pass2}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Pass2'} inputName={'pass2'} stateVal={this.state.credVault.pass2} onChangeHandler={this.handleInputChange} />
                                 </Col>
+
                                 <Col md={3}>
-                                    <Form.Group controlId="pin">
-                                        <Form.Label>Pin</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Pin"
-                                            name="pin"
-                                            value={this.state.credVault.pin}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Pin'} inputName={'pin'} stateVal={this.state.credVault.pin} onChangeHandler={this.handleInputChange} />
                                 </Col>
+
                                 <Col md={3}>
-                                    <Form.Group controlId="mpin">
-                                        <Form.Label>M-Pin</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="M-Pin"
-                                            name="mpin"
-                                            value={this.state.credVault.mpin}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'M-Pin'} inputName={'mpin'} stateVal={this.state.credVault.mpin} onChangeHandler={this.handleInputChange} />
                                 </Col>
+
                                 <Col md={3}>
-                                    <Form.Group controlId="otp">
-                                        <Form.Label>OTP</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="OTP"
-                                            name="otp"
-                                            value={this.state.credVault.otp}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'OTP'} inputName={'otp'} stateVal={this.state.credVault.otp} onChangeHandler={this.handleInputChange} />
                                 </Col>
                             </Row>
+
                             <Row>
 
                                 <Col md={3}>
-                                    <Form.Group controlId="totp">
-                                        <Form.Label>T-OTP</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="T-OTP"
-                                            name="totp"
-                                            value={this.state.credVault.totp}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'T-OTP'} inputName={'totp'} stateVal={this.state.credVault.totp} onChangeHandler={this.handleInputChange} />
                                 </Col>
-                                <Col md={3}>
-                                    <Form.Group controlId="info1">
-                                        <Form.Label>Info1</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Info1"
-                                            name="info1"
-                                            value={this.state.credVault.info1}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={3}>
-                                    <Form.Group controlId="info2">
-                                        <Form.Label>Info2</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Info2"
-                                            name="info2"
-                                            value={this.state.credVault.info2}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
 
-                                </Col>
                                 <Col md={3}>
-                                    <Form.Group controlId="info3">
-                                        <Form.Label>Info3</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Info3"
-                                            name="info3"
-                                            value={this.state.credVault.info3}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Info1'} inputName={'info1'} stateVal={this.state.credVault.info1} onChangeHandler={this.handleInputChange} />
+                                </Col>
+
+                                <Col md={3}>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Info2'} inputName={'info2'} stateVal={this.state.credVault.info2} onChangeHandler={this.handleInputChange} />
+                                </Col>
+
+                                <Col md={3}>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Info3'} inputName={'info3'} stateVal={this.state.credVault.info3} onChangeHandler={this.handleInputChange} />
                                 </Col>
                             </Row>
 
