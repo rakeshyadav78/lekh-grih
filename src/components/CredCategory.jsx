@@ -3,6 +3,7 @@ import { Button, Col, Form, Row, Table } from "react-bootstrap";
 import { fetchCredCategory, createCredCat } from '../service/passVaultService';
 import '../css/CredCategory.css';
 import TableComponent from "./TableComponent";
+import CustomFormInput from "./CustomFormInput";
 
 class CredCategory extends React.Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class CredCategory extends React.Component {
     async componentDidMount() {
         const data = await fetchCredCategory();
         console.log('component did mount : ', data)
-        this.setState({ credCategory: data }); 
+        this.setState({ credCategory: data });
     }
 
     openModal = () => {
@@ -80,13 +81,13 @@ class CredCategory extends React.Component {
         console.log('Deleting : ' + cid)
     }
 
-    tableHeader=[
+    tableHeader = [
         { key: 'id', label: 'ID' },
         { key: 'cid', label: 'Credential Category' },
         { key: 'description', label: 'Description' },
         { key: 'action', label: 'Action' }
-      ]
-    
+    ]
+
 
     render() {
         return (
@@ -96,28 +97,11 @@ class CredCategory extends React.Component {
                         <div className="modal-content">
                             <Row>
                                 <Col md={6}>
-                                    <Form.Group controlId="formInput1">
-                                        <Form.Label>Credential category</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Credential category"
-                                            name="cid"
-                                            value={this.state.credCategoryReq.cid}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Credential category'} inputName={'cid'} stateVal={this.state.credCategoryReq.cid} onChangeHandler={this.handleInputChange} />
                                 </Col>
+                                
                                 <Col md={6}>
-                                    <Form.Group controlId="formInput1">
-                                        <Form.Label>Credential Description</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Credential Description"
-                                            name="description"
-                                            value={this.state.credCategoryReq.description}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Credential Description'} inputName={'description'} stateVal={this.state.credCategoryReq.description} onChangeHandler={this.handleInputChange} />
                                 </Col>
                             </Row>
 
@@ -143,7 +127,7 @@ class CredCategory extends React.Component {
                                 </Button>
                             </div>
                             <TableComponent onEdit={this.handleEdit} onDelete={this.handleDelete} columns={this.tableHeader} data={this.state.credCategory} />
-                        
+
                         </div>
 
                     )}
