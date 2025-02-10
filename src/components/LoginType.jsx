@@ -4,6 +4,7 @@ import { fetchCredLoginTypes, createCredLoginType } from '../service/passVaultSe
 import '../css/CredSubCategory.css';
 import { FaEdit, FaTrash } from "react-icons/fa";
 import TableComponent from "./TableComponent";
+import CustomFormInput from "./CustomFormInput";
 
 class LoginType extends React.Component {
     constructor(props) {
@@ -19,17 +20,17 @@ class LoginType extends React.Component {
         }
     }
 
-    tableHeader=[
+    tableHeader = [
         { key: 'id', label: 'ID' },
         { key: 'type', label: 'Login Type' },
         { key: 'description', label: 'Description' },
         { key: 'action', label: 'Action' }
-      ]
+    ]
 
     async componentDidMount() {
         const data = await fetchCredLoginTypes();
         console.log('component did mount : ', data)
-        this.setState({ loginType: data }); 
+        this.setState({ loginType: data });
     }
 
     openModal = () => {
@@ -96,28 +97,10 @@ class LoginType extends React.Component {
                         <div className="modal-content">
                             <Row>
                                 <Col md={6}>
-                                    <Form.Group controlId="formInput1">
-                                        <Form.Label>Login Type</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Login type"
-                                            name="type"
-                                            value={this.state.loginTypeReq.type}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Login Type'} inputName={'type'} stateVal={this.state.loginTypeReq.type} onChangeHandler={this.handleInputChange} />
                                 </Col>
                                 <Col md={6}>
-                                    <Form.Group controlId="formInput1">
-                                        <Form.Label>Description</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Description"
-                                            name="description"
-                                            value={this.state.loginTypeReq.description}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Description'} inputName={'description'} stateVal={this.state.loginTypeReq.description} onChangeHandler={this.handleInputChange} />
                                 </Col>
                             </Row>
 
@@ -144,7 +127,7 @@ class LoginType extends React.Component {
                             </div>
                             <TableComponent onEdit={this.handleEdit} onDelete={this.handleDelete} columns={this.tableHeader} data={this.state.loginType} />
 
-                           
+
                         </div>
 
                     )}

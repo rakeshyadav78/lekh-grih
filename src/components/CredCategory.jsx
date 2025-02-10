@@ -99,7 +99,7 @@ class CredCategory extends React.Component {
                                 <Col md={6}>
                                     <CustomFormInput inputType={'text'} placeholderVal={'Credential category'} inputName={'cid'} stateVal={this.state.credCategoryReq.cid} onChangeHandler={this.handleInputChange} />
                                 </Col>
-                                
+
                                 <Col md={6}>
                                     <CustomFormInput inputType={'text'} placeholderVal={'Credential Description'} inputName={'description'} stateVal={this.state.credCategoryReq.description} onChangeHandler={this.handleInputChange} />
                                 </Col>

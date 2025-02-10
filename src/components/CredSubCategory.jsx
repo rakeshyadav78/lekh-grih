@@ -4,6 +4,7 @@ import { fetchCredSubCategory, createSubCredCat } from '../service/passVaultServ
 import '../css/CredSubCategory.css';
 import { FaEdit, FaTrash } from "react-icons/fa";
 import TableComponent from "./TableComponent";
+import CustomFormInput from "./CustomFormInput";
 
 class CredSubCategory extends React.Component {
     constructor(props) {
@@ -19,17 +20,17 @@ class CredSubCategory extends React.Component {
         }
     }
 
-    tableHeader=[
+    tableHeader = [
         { key: 'id', label: 'ID' },
         { key: 'scid', label: 'Credential Sub-Category' },
         { key: 'description', label: 'Description' },
         { key: 'action', label: 'Action' }
-      ]
+    ]
 
     async componentDidMount() {
         const data = await fetchCredSubCategory();
         console.log('component did mount : ', data)
-        this.setState({ credSubCategory: data }); 
+        this.setState({ credSubCategory: data });
     }
 
     openModal = () => {
@@ -96,28 +97,11 @@ class CredSubCategory extends React.Component {
                         <div className="modal-content">
                             <Row>
                                 <Col md={6}>
-                                    <Form.Group controlId="formInput1">
-                                        <Form.Label>Sub category</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Sub category"
-                                            name="scid"
-                                            value={this.state.credSubCategoryReq.scid}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Sub category'} inputName={'scid'} stateVal={this.state.credSubCategoryReq.scid} onChangeHandler={this.handleInputChange} />
                                 </Col>
+                               
                                 <Col md={6}>
-                                    <Form.Group controlId="formInput1">
-                                        <Form.Label>Description</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Description"
-                                            name="description"
-                                            value={this.state.credSubCategoryReq.description}
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Description'} inputName={'description'} stateVal={this.state.credSubCategoryReq.description} onChangeHandler={this.handleInputChange} />
                                 </Col>
                             </Row>
 
@@ -145,7 +129,7 @@ class CredSubCategory extends React.Component {
 
                             <TableComponent onEdit={this.handleEdit} onDelete={this.handleDelete} columns={this.tableHeader} data={this.state.credSubCategory} />
 
-                            
+
                         </div>
 
                     )}
