@@ -145,43 +145,7 @@ class CredSubCategory extends React.Component {
 
                             <TableComponent onEdit={this.handleEdit} onDelete={this.handleDelete} columns={this.tableHeader} data={this.state.credSubCategory} />
 
-                            {/* <Table bordered responsive className="text-center">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Credential Sub-Category</th>
-                                        <th>Description</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.state.credSubCategory.map(item => (
-                                        <tr key={item.id}>
-                                            <td>{item.id}</td>
-                                            <td>{item.scid}</td>
-                                            <td>{item.description}</td>
-                                            <td>
-
-                                                <span
-                                                    onClick={() => this.handleEdit(item.id)}
-                                                    className="me-2 text-warning"
-                                                    style={{ cursor: 'pointer' }}
-                                                >
-                                                    <FaEdit size={16} />
-                                                </span>
-                                                <span
-                                                    onClick={() => this.handleDelete(item.id)}
-
-                                                    className="text-danger"
-                                                    style={{ cursor: 'pointer' }}
-                                                >
-                                                    <FaTrash size={16} />
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </Table> */}
+                            
                         </div>
 
                     )}

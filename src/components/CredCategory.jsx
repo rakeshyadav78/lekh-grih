@@ -1,9 +1,7 @@
 import React from "react";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
 import { fetchCredCategory, createCredCat } from '../service/passVaultService';
-import CredCategoryCreateModal from "./CredCategoryCreateModal";
 import '../css/CredCategory.css';
-import { FaEdit, FaTrash } from "react-icons/fa";
 import TableComponent from "./TableComponent";
 
 class CredCategory extends React.Component {
@@ -145,43 +143,7 @@ class CredCategory extends React.Component {
                                 </Button>
                             </div>
                             <TableComponent onEdit={this.handleEdit} onDelete={this.handleDelete} columns={this.tableHeader} data={this.state.credCategory} />
-                            {/* <Table bordered responsive className="text-center">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Credential Category</th>
-                                        <th>Description</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.state.credCategory.map(item => (
-                                        <tr key={item.id}>
-                                            <td>{item.id}</td>
-                                            <td>{item.cid}</td>
-                                            <td>{item.description}</td>
-                                            <td>
-
-                                                <span
-                                                    onClick={() => this.handleEdit(item.id)}
-                                                    className="me-2 text-warning"
-                                                    style={{ cursor: 'pointer' }}
-                                                >
-                                                    <FaEdit size={16} />
-                                                </span>
-                                                <span
-                                                    onClick={() => this.handleDelete(item.id)}
-
-                                                    className="text-danger"
-                                                    style={{ cursor: 'pointer' }}
-                                                >
-                                                    <FaTrash size={16} />
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </Table> */}
+                        
                         </div>
 
                     )}
