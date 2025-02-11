@@ -53,14 +53,41 @@
     /* Remove default margin */
 }
 
-.custom-navbar-links .nav-item {
+/* .custom-navbar-links .nav-item {
     padding: 0 15px;
-    /* Space out the links */
-}
+   
+} */
 
 .nav-link {
     color: #000;
     /* Default link color */
     text-decoration: none;
     /* Remove underline */
+}
+
+
+
+
+.profile-link::after {
+    display: none !important;  /* Hides the dropdown arrow */
+}
+
+.profile-link {
+    color: rgb(25, 136, 204);  /* Icon color */
+    font-size: 22px;  /* Icon size */
+    display: flex;
+    align-items: center;
+}
+
+.profile-link:hover {
+    color: rgb(25, 136, 204);  /* Icon color */
+}
+
+.navbar-nav .nav-item {
+    margin-right: 20px;
+}
+
+/* Optional: Style for the dropdown menu */
+.dropdown-menu {
+    min-width: 150px;
 }

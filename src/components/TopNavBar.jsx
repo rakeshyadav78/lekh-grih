@@ -1,7 +1,8 @@
 import React from "react";
-import { Container, Navbar } from "react-bootstrap";
+import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import '../css/TopNavBar.css';  // Import your custom CSS file
+import { FaUserCircle } from "react-icons/fa";
 
 class TopNavBar extends React.Component {
     render() {
@@ -12,7 +13,7 @@ class TopNavBar extends React.Component {
                         <Navbar.Brand className="nav-brand">LekhGrih</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <ul className="navbar-nav custom-navbar-links">
+                            <Nav className="navbar-nav custom-navbar-links">
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to="/">
                                         Home
@@ -38,7 +39,26 @@ class TopNavBar extends React.Component {
                                         Contact
                                     </NavLink>
                                 </li>
-                            </ul>
+
+                            </Nav>
+
+                            <Nav className="ml-auto">
+                                <li className="nav-item">
+                                    <Dropdown align="end">
+                                        <Dropdown.Toggle
+                                            variant="link"
+                                            id="dropdown-custom-components"
+                                            className="profile-link">
+                                            <FaUserCircle size={30} /> {/* Profile Icon */}
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item as={NavLink} to="/account">Account</Dropdown.Item>
+                                            <Dropdown.Item as={NavLink} to="/logout">Logout</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </li>
+                            </Nav>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

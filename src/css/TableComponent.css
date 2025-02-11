@@ -12,7 +12,7 @@
   .table-rounded thead th {
     background-color: #f8f9fa; /* Add a background color to the header */
     padding: 10px;
-    text-align: left;
+    text-align: center;
   }
   
   .table-rounded tbody tr {

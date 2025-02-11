@@ -1,14 +1,19 @@
 
-import { Button, Container, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
 import TopNavBar from './TopNavBar';
 import Footer from './Footer';
 import Content from './Content';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       isLoggedIn:false
+    }
+  }
 
   pageWrapperStyle = {
     display: 'flex',
