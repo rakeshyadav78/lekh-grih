@@ -7,8 +7,11 @@ import { data } from "react-router-dom";
 import TableComponent from "./TableComponent";
 import CustomFormSelect from "./CustomFormSelect";
 import CustomFormInput from "./CustomFormInput";
+import AuthContext from "./AuthContext";
 
 class ManageCred extends React.Component {
+    static contextType = AuthContext;
+
     constructor(props) {
         super(props)
 
@@ -76,7 +79,7 @@ class ManageCred extends React.Component {
             showModal: !prevState.showModal,
             credVault: {
                 type: '',
-                userName: '',
+                userName: this.context.authState.user.userId,
                 ccid: '',
                 cscid: '',
                 type: '',
@@ -182,7 +185,7 @@ class ManageCred extends React.Component {
                             <Row>
 
                                 <Col md={3}>
-                                    <CustomFormInput inputType={'text'} placeholderVal={'Username'} inputName={'userName'} stateVal={this.state.credVault.userName} onChangeHandler={this.handleInputChange} />
+                                    <CustomFormInput inputType={'text'} placeholderVal={'Username'} inputName={'userName'} stateVal={this.state.credVault.userName} onChangeHandler={this.handleInputChange} isReadOnly={true}/>
                                 </Col>
 
                                 <Col md={3}>

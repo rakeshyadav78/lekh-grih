@@ -150,3 +150,22 @@ export const createCred = async (reqData) => {
         console.log(error)
     }
 }
+
+export const loginUser = async (reqData) => {
+    try {
+
+        console.log('calling api '+reqData)
+        const response = await axios.post(API_URL + '/users/login', reqData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = response.data.respObj;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}

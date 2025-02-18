@@ -4,7 +4,7 @@ import TableComponent from "./TableComponent";
 import AuthContext from "./AuthContext";
 
 class Home extends React.Component {
-  static contextType = AuthContext;
+  // static contextType = AuthContext;
 
   constructor(props) {
     super(props);
@@ -46,24 +46,24 @@ class Home extends React.Component {
     console.log('editin : '+id)
   }
 
-  loginHandler=()=>{
-    console.log('loginHandler')
-    this.context.login();
-    console.log('user : '+this.context.authState.isLoggedIn)
+  // loginHandler=()=>{
+  //   console.log('loginHandler')
+  //   this.context.login();
+  //   console.log('user : '+this.context.authState.isLoggedIn)
 
-  }
+  // }
 
-  logoutHandler=()=>{
-    console.log('loginHandler')
-    this.context.logout();
-  }
+  // logoutHandler=()=>{
+  //   console.log('loginHandler')
+  //   this.context.logout();
+  // }
 
   render() {
 
     return (
       <div >
-        <Button className="primary" onClick={this.loginHandler}>Login</Button>
-        <Button className="primary" onClick={this.logoutHandler}>Logout</Button>
+        {/* <Button className="primary" onClick={this.loginHandler}>Login</Button>
+        <Button className="primary" onClick={this.logoutHandler}>Logout</Button> */}
         <TableComponent data={this.state.products} columns={this.tableHeader} onDelete={this.onDelte} onEdit={this.onEdit}/>
       </div>
     );

@@ -3,9 +3,19 @@ import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import '../css/TopNavBar.css';  // Import your custom CSS file
 import { FaUserCircle } from "react-icons/fa";
+import AuthContext from "./AuthContext";
 
 class TopNavBar extends React.Component {
+    static contextType = AuthContext;
+
+    logoutHandler=()=>{
+        console.log('loginHandler')
+        this.context.logout();
+      }
+
     render() {
+        const { logout } = this.context; // Access logout method from context
+
         return (
             <div className='header'>
                 <Navbar className="navbar-custom">
@@ -54,7 +64,7 @@ class TopNavBar extends React.Component {
 
                                         <Dropdown.Menu>
                                             <Dropdown.Item as={NavLink} to="account">Account</Dropdown.Item>
-                                            <Dropdown.Item as={NavLink} to="logout">Logout</Dropdown.Item>
+                                            <Dropdown.Item  onClick={this.logoutHandler}>Logout</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </li>

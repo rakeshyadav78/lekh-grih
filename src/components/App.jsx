@@ -20,14 +20,15 @@ import DocVault from './DocVault';
 import PrivateRoute from './PrivateRoute';
 import About from './About';
 import Contact from './Contact';
+import AccountDetail from './AccountDetail';
 
 class App extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      isLoggedIn: true
-    }
+    // this.state = {
+    //   isLoggedIn: true
+    // }
   }
 
   pageWrapperStyle = {
@@ -41,8 +42,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='app-content' style={this.pageWrapperStyle}>
-        {/* <AuthContextProvider> */}
+      <AuthContextProvider>
+
+        <div className='app-content' style={this.pageWrapperStyle}>
 
           <Routes>
             <Route path='/login' element={<LoginPage />} />
@@ -60,34 +62,15 @@ class App extends React.Component {
               <Route path='docvault' element={<PrivateRoute><DocVault /></PrivateRoute>} />
               <Route path='about' element={<PrivateRoute><About /></PrivateRoute>} />
               <Route path='contact' element={<PrivateRoute><Contact /></PrivateRoute>} />
+              <Route path='account' element={<PrivateRoute><AccountDetail/></PrivateRoute>} />
               <Route path="*" element={<NotFound />} />
             </Route>
             <Route index element={<LoginPage />} />
           </Routes>
 
-          {/* <Routes>
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/user-dashboard' element={<UserDashboard />} >
-              <Route index element={<Home />} />
-              <Route path='home' element={<Home />} />
-              <Route path='passvault' element={<PassVault />} >
-                <Route path="credCategory" element={<CredCategory />} />
-                <Route path="credSubCategory" element={<CredSubCategory />} />
-                <Route path="loginType" element={<LoginType />} />
-                <Route path="manageCred" element={<ManageCred />} />
-                <Route index element={<CredCategory />} />
-                <Route path="*" element={<NotFound />} />
-              </Route>
-              <Route path='docvault' element={<DocVault />} />
-              <Route path='about' element={<About />} />
-              <Route path='contact' element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-            <Route index element={<LoginPage />} />
-          </Routes> */}
-        {/* </AuthContextProvider> */}
+        </div>
+      </AuthContextProvider>
 
-      </div>
 
     );
   }

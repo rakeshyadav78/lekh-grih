@@ -1,6 +1,6 @@
 import { Form } from "react-bootstrap";
 
-const CustomFormInput = ({ inputType, placeholderVal, inputName, stateVal, onChangeHandler }) => {
+const CustomFormInput = ({ inputType, placeholderVal, inputName, stateVal, onChangeHandler,isReadOnly }) => {
     return (
         <Form.Group controlId={inputName}>
             <Form.Label>{placeholderVal}</Form.Label>
@@ -10,6 +10,7 @@ const CustomFormInput = ({ inputType, placeholderVal, inputName, stateVal, onCha
                 name={inputName}
                 value={stateVal}
                 onChange={onChangeHandler}
+                readOnly={isReadOnly}
             />
         </Form.Group>
     )
