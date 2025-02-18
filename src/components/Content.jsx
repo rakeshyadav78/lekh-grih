@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import About from "./About";
 import Contact from "./Contact";
@@ -9,6 +9,8 @@ import CredCategory from "./CredCategory";
 import ManageCred from "./ManageCred";
 import CredSubCategory from "./CredSubCategory";
 import LoginType from "./LoginType";
+import PrivateRoute from "./PrivateRoute";
+import LoginPage from "./LoginPage";
 
 const Content = () => {
 
@@ -30,8 +32,9 @@ const Content = () => {
     <div className="page-content" style={contentDivStyle}>
       {/* <p>Centered content</p> */}
 
-      <Routes>
+      {/* <Routes>
         <Route path='/' element={<Home />} />
+
         <Route path='/passvault' element={<PassVault />} >
           <Route path="credCategory" element={<CredCategory />} />
           <Route path="credSubCategory" element={<CredSubCategory />} />
@@ -41,12 +44,13 @@ const Content = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path='/docvault' element={<DocVault />} />
-        <Route path='/about' element={<About />} />
+        <Route path='/about' element={<PrivateRoute><About /></PrivateRoute>} />
         <Route path='/contact' element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
-
-      </Routes>
+        <Route path='/login' element={<LoginPage />} />
+      </Routes> */}
+      <Outlet/>
     </div>
   )
 }

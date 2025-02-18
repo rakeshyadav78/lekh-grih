@@ -15,27 +15,27 @@ class TopNavBar extends React.Component {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="navbar-nav custom-navbar-links">
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/">
+                                    <NavLink className="nav-link" to="home">
                                         Home
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/passvault" >
+                                    <NavLink className="nav-link" to="passvault" >
                                         Pas Vault
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/docvault" >
+                                    <NavLink className="nav-link" to="docvault" >
                                         Doc Vault
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/about" >
+                                    <NavLink className="nav-link" to="about" >
                                         About
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/contact" >
+                                    <NavLink className="nav-link" to="contact" >
                                         Contact
                                     </NavLink>
                                 </li>
@@ -53,8 +53,8 @@ class TopNavBar extends React.Component {
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu>
-                                            <Dropdown.Item as={NavLink} to="/account">Account</Dropdown.Item>
-                                            <Dropdown.Item as={NavLink} to="/logout">Logout</Dropdown.Item>
+                                            <Dropdown.Item as={NavLink} to="account">Account</Dropdown.Item>
+                                            <Dropdown.Item as={NavLink} to="logout">Logout</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </li>
