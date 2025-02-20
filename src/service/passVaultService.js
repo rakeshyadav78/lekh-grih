@@ -115,9 +115,9 @@ export const createCredLoginType = async (loginType, description) => {
 }
 
 
-export const fetchCredentials = async () => {
+export const fetchCredentials = async (userName) => {
     try {
-        const response = await axios.get(API_URL + '/credvault/getAllCreds', {
+        const response = await axios.get(API_URL + '/credvault/getAllCredsByUserId?userName='+userName, {
             responseType: 'json' // Correct type 'json', not JSON
         });
         const data = response.data;
@@ -160,7 +160,7 @@ export const loginUser = async (reqData) => {
                 'Content-Type': 'application/json'
             }
         });
-        const data = response.data.respObj;
+        const data = response.data;
         const status = response.status;
         console.log('Response data: ', data);
         console.log('Response status: ', status);

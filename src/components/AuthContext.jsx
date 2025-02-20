@@ -15,30 +15,11 @@ export const AuthContextProvider = ({ children }) => {
 
     const navigate = useNavigate();
 
-    // Dummy user data (would be fetched from an API or other sources in a real app)
-    // const loginData = {
-    //     "id": 1,
-    //     "name": "John Doe",
-    //     "email": "johndoe@example.com",
-    //     "avatar": "https://www.example.com/images/johndoe-avatar.jpg",
-    //     "roles": ["admin", "user"],
-    //     "preferences": {
-    //         "theme": "dark",
-    //         "notifications": true
-    //     },
-    //     "lastLogin": "2025-02-13T08:30:00Z",
-    //     "authToken": "your-auth-token-here"
-    // };
-
-    // const loginReq = {
-    //     "userId": "rakesh",
-    //     "pass1": "rakesh@78"
-    // }
+   
 
     useEffect(() => {
-        // This will run only once, after the initial render
         if (authState.isLoggedIn) {
-            // console.log('User logged in:', authState.user);
+
         }
     }, [authState.isLoggedIn, authState.user]); // Will trigger when `authState` is updated
 
@@ -47,11 +28,16 @@ export const AuthContextProvider = ({ children }) => {
         console.log('Logging user in : ');
         const loginData = await loginUser(JSON.stringify(loginReq))
         console.log(JSON.stringify(loginData))
+        
+        if(loginData.errorMsg!=='Success'){
+            return loginData.errorMsg;
+        }
+
         setAuthState((prevState) => {
             const newState = {
                 ...prevState,
                 isLoggedIn: true,
-                user: loginData
+                user: loginData.respObj
             };
             console.log(JSON.stringify(newState));
             navigate('/user-dashboard');

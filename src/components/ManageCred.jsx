@@ -58,7 +58,7 @@ class ManageCred extends React.Component {
 
 
     async componentDidMount() {
-        const resp = await fetchCredentials();
+        const resp = await fetchCredentials(this.context.authState.user.userId);
         console.log('credential response : ' + resp)
         this.setState({ credData: resp })
         await this.getCredCategory()
@@ -125,7 +125,7 @@ class ManageCred extends React.Component {
 
 
     viewData = async () => {
-        const data = await fetchCredentials();
+        const data = await fetchCredentials(this.context.authState.user.userId);
         this.setState({ credData: data })
         this.showForm()
     }

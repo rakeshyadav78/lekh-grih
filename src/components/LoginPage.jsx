@@ -17,21 +17,19 @@ class LoginPage extends React.Component {
         }
     }
 
-    loginHandler = (e) => {
+    loginHandler = async (e) => {
         console.log('loginHandler')
-        // this.context.login();
-        // console.log('user : ' + this.context.authState.isLoggedIn)
-
+        
         e.preventDefault();
         const { userId, pass1 } = this.state.loginReq;
 
-        // Basic validation
         if (!userId || !pass1) {
             this.setState({ error: 'User Id & Password required' });
         } else {
             this.setState({ error: '' });
             console.log('Form submitted:', { userId, pass1 });
-            this.context.login(this.state.loginReq)
+            const errorMsg= await this.context.login(this.state.loginReq)
+            this.setState({ error: errorMsg});
         }
     }
 
