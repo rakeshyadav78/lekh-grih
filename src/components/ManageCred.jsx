@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
-import { fetchCredentials, fetchCredCategory, fetchCredSubCategory, fetchCredLoginTypes, createCred } from '../service/passVaultService';
+import { fetchCredentials, fetchCredCategory, fetchCredSubCategory, fetchCredLoginTypes, createCred, deleteCredByUserNameAndId } from '../service/passVaultService';
 import { FaEdit, FaTrash } from "react-icons/fa";
 import '../css/ManageCred.css';
 import { data } from "react-router-dom";
@@ -66,12 +66,15 @@ class ManageCred extends React.Component {
         await this.getCredLoginTypes()
     }
 
-    handleEdit = (id) => {
-        console.log('Updating : ' + id)
+    handleEdit = (cred) => {
+        console.log('Updating : ' + cred.id)
     }
 
-    handleDelete = (id) => {
-        console.log('Deleting : ' + id)
+    handleDelete = async(cred) => {
+        console.log('Deleting : ' + cred.id+',userName :'+cred.userName)
+        await deleteCredByUserNameAndId(cred.id,cred.userName)
+        const resp = await fetchCredentials(this.context.authState.user.userId);
+        this.setState({ credData: resp })
     }
 
     showForm = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
-import { fetchCredSubCategory, createSubCredCat } from '../service/passVaultService';
+import { fetchCredSubCategory, createSubCredCat, deleteCredSubCategory } from '../service/passVaultService';
 import '../css/CredSubCategory.css';
 import { FaEdit, FaTrash } from "react-icons/fa";
 import TableComponent from "./TableComponent";
@@ -85,8 +85,11 @@ class CredSubCategory extends React.Component {
         console.log('Updating : ' + cid)
     }
 
-    handleDelete = (cid) => {
-        console.log('Deleting : ' + cid)
+    handleDelete = async (data) => {
+        console.log('Deleting : ' + data.id)
+        await deleteCredSubCategory(data.id)
+        const scdata = await fetchCredSubCategory();
+        this.setState({ credSubCategory: scdata });
     }
 
     render() {

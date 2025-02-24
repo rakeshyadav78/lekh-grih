@@ -169,3 +169,80 @@ export const loginUser = async (reqData) => {
         console.log(error)
     }
 }
+
+export const deleteCredCategory = async (id) => {
+    try {
+
+        console.log('calling api '+id)
+        const response = await axios.delete(API_URL + '/cred-category/deleteById/'+id, {
+            headers: {
+                
+            }
+        });
+        const data = response.data;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const deleteCredSubCategory = async (id) => {
+    try {
+
+        console.log('calling api '+id)
+        const response = await axios.delete(API_URL + '/cred-sub-category/deleteById/'+id, {
+            headers: {
+                
+            }
+        });
+        const data = response.data;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteLoginType = async (id) => {
+    try {
+
+        console.log('calling api '+id)
+        const response = await axios.delete(API_URL + '/cred-logintype/deleteById/'+id, {
+            headers: {
+                
+            }
+        });
+        const data = response.data;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteCredByUserNameAndId = async (id,userName) => {
+    try {
+
+        console.log('calling api '+id)
+        const response = await axios.delete(API_URL + '/credvault/deleteByIdAndUserName?userName='+userName+'&id='+id, {
+            headers: {
+                
+            }
+        });
+        const data = response.data;
+        const status = response.status;
+        console.log('Response data: ', data);
+        console.log('Response status: ', status);
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}

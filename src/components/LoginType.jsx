@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
-import { fetchCredLoginTypes, createCredLoginType } from '../service/passVaultService';
+import { fetchCredLoginTypes, createCredLoginType, deleteLoginType } from '../service/passVaultService';
 import '../css/CredSubCategory.css';
 import { FaEdit, FaTrash } from "react-icons/fa";
 import TableComponent from "./TableComponent";
@@ -81,12 +81,15 @@ class LoginType extends React.Component {
         }));
     }
 
-    handleEdit = (cid) => {
-        console.log('Updating : ' + cid)
+    handleEdit = (loginData) => {
+        console.log('Updating : ' + loginData.id)
     }
 
-    handleDelete = (cid) => {
-        console.log('Deleting : ' + cid)
+    handleDelete = async (loginData) => {
+        console.log('Deleting : ' + loginData.id)
+        await deleteLoginType(loginData.id)
+        const data = await fetchCredLoginTypes();
+        this.setState({ loginType: data });
     }
 
     render() {

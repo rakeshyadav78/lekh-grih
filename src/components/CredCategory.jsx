@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
-import { fetchCredCategory, createCredCat } from '../service/passVaultService';
+import { fetchCredCategory, createCredCat, deleteCredCategory } from '../service/passVaultService';
 import '../css/CredCategory.css';
 import TableComponent from "./TableComponent";
 import CustomFormInput from "./CustomFormInput";
@@ -73,12 +73,15 @@ class CredCategory extends React.Component {
         }));
     }
 
-    handleEdit = (cid) => {
-        console.log('Updating : ' + cid)
+    handleEdit = (data) => {
+        console.log('Updating : ' + data.id)
     }
 
-    handleDelete = (cid) => {
-        console.log('Deleting : ' + cid)
+    handleDelete = async (data) => {
+        console.log('Deleting : ' + data.id)
+        await deleteCredCategory(data.id);
+        const credData = await fetchCredCategory();
+        this.setState({ credCategory: credData });
     }
 
     tableHeader = [

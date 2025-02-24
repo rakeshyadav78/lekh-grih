@@ -2,6 +2,7 @@ import React from "react";
 import AuthContext from "./AuthContext";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
+import { decryptAes } from "../service/aesUtil";
 
 class LoginPage extends React.Component {
     static contextType = AuthContext;
@@ -19,7 +20,10 @@ class LoginPage extends React.Component {
 
     loginHandler = async (e) => {
         console.log('loginHandler')
-        
+        const aeskey = 'B459FA90B8E908B83156BB0254609A2E0E5C3D844ABC987524A6123BFAC89543'
+        const aesEnc = 'ccc0dfecd7744ac46becfb42786f090e113dafd9ab8fd08b40bea5ac1551ff7675eb706177b69a40b492a98d2595e71d05ac2d158f1cdcf61dc609f654109f0dbafb169903a51ddaaeac8221eaf9751e'
+        const data = decryptAes(aesEnc, aeskey)
+        console.log('decrypted data : ' + data)
         e.preventDefault();
         const { userId, pass1 } = this.state.loginReq;
 
@@ -28,8 +32,8 @@ class LoginPage extends React.Component {
         } else {
             this.setState({ error: '' });
             console.log('Form submitted:', { userId, pass1 });
-            const errorMsg= await this.context.login(this.state.loginReq)
-            this.setState({ error: errorMsg});
+            const errorMsg = await this.context.login(this.state.loginReq)
+            this.setState({ error: errorMsg });
         }
     }
 

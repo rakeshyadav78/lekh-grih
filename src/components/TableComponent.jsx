@@ -165,12 +165,12 @@ function TableComponent({ data = [], columns = [], onDelete, onEdit }) {
                                                 return (
                                                     <td key={col.key}>
                                                         <FaEdit
-                                                            onClick={() => onEdit(row.id)}
+                                                            onClick={() => onEdit(row)}
                                                             style={{ cursor: 'pointer', marginRight: '10px', color: 'green' }}
                                                             title="Edit"
                                                         />
                                                         <FaTrashAlt
-                                                            onClick={() => onDelete(row.id)}
+                                                            onClick={() => onDelete(row)}
                                                             style={{ cursor: 'pointer', color: 'red' }}
                                                             title="Delete"
                                                         />
